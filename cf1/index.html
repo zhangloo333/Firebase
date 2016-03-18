@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id='messagesDiv'></div>
+<input type='text' id='nameInput' placeholder='Name'>
+<input type='text' id='messageInput' placeholder='Message'>
+<button id='login'>login</button>
+<script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+<script>
+    
+var ref = new Firebase("https://cf1.firebaseio.com/");
+
+$('#login').on('click',function(){
+
+
+        ref.authWithOAuthPopup("github", function(error, authData) {
+      if (error) {
+        console.log("Login Failed!", error);
+      } else {
+        console.log("Authenticated successfully with payload:", authData);
+      }
+  });
+
+
+
+    function authDataCallback(authData) {
+    if (authData) {
+      console.log("User " + authData.uid + " is logged in with " + authData.provider + "Expires" + authData.expires);
+    } else {
+      console.log("User is logged out");
+    }
+  }
+    ref.onAuth(authDataCallback);
+
+})
+
+
+    
+
+</script>
+
+</body>
+</body>
+</html>

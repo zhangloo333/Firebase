@@ -1,0 +1,125 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>The HTML5 Herald</title>
+</head>
+<body>
+	<p id="pp">this is for test </p>
+	<button id="btn">button</button>
+	<button id="btn2">retrieveing</button>
+	<script src="https://cdn.firebase.com/js/client/2.4.0/firebase.js"></script>
+	<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+	<script>
+		// var ref = new Firebase("https://docs-examples.firebaseio.com/web/saving-data/fireblog/posts");
+		// var lastMessagesQuery = messageListRef.endAt().limit();
+
+	// var ref = new Firebase("https://amber-torch-6587.firebaseio.com/room/");
+	var ref = new Firebase("https://amber-torch-6587.firebaseio.com/");
+	var KeyArray = [];
+
+		// var snapshot = ref.child("users");
+		// 	var snapshot = ref.numChildren();
+		// console.log(snapshot);
+		// ref.once("value",function(data){
+		// 	var num =data.numChildren();
+		// 	console.log(num);
+		// })
+		// var name = snapshot.exists();
+		// snapshot.once("value",function(data){
+		// 	data.forEach(function(childSnapshot){
+		// 	var childSnapshot = data.hasChild("name");
+		// 	console.log(value);
+		// // })
+		// });
+		// snapshot.on("value",function(sp) {
+		// 	name = sp.exists();
+		// });
+		// console.log(name);
+		$("#btn").on("click",function(){
+		
+
+		ref.child("room").update({
+			// one:{
+			// 	name: "for1",
+			// 	type:"private"
+			// },
+			// two:{
+			// 	name: "lee",
+			// 	type:"public"
+			// },
+			// three:{
+			// 	name: "tony",
+			// 	type:"private"
+			// }
+			// "nickname":"Amazing Grace"
+							"room":{
+						"one":{
+								name:"for2"
+						},
+						"two": {name:"public1"
+						}}
+			
+		}, function(error){
+			 if (error) {
+			    alert("Data could not be saved." + error);
+			  // } else {
+			  //   alert("Data saved successfully.");
+			  }
+
+		});
+
+var bloger = ref.child("posts");
+
+		var newPostber = bloger.push();
+		
+		KeyArray.push(newPostber.key());
+		newPostber.set({
+			author: "gracehop",
+			title:"Anouncting cobol, a new programming language"
+		});
+// bloger.push({
+// 			author: "gracehop",
+// 			title:"Anouncting cobol, a new programming language"
+// 		});
+		// $('<p>sdsd</p>').appendTo($('#pp'));
+		$('<p/>').text("asdasd").prepend($('<span>')).text("12344").appendTo($('#pp'));
+		console.log(newPostber.key());
+
+		console.log("hello world");
+
+	});
+		// ref.child("room").set({
+		// 	one:{
+		// 		"name": "for",
+		// 		"type":"private"
+		// 	},
+		// 	{
+		// 	two:{
+		// 		"name": "lee",
+		// 		"type":"public"
+		// 	},
+		// 	{
+		// 	three:{
+		// 		"name": "tony",
+		// 		"type":"private"
+		// 	}
+		// });	
+		$('#btn2').on('click',function(){
+			var childPost = ref.child('posts/-K9iv7yEUMRPCFWponM_');
+			childPost.on("value",function(snapshot){
+				console.log(snapshot.val());
+
+			}, function(error){
+				if(error != null)
+				{
+					console.log("the retrieveing is successfully");
+				}
+				else
+					console.log("error code is "+ error.code);
+			});
+
+		});
+
+	</script>

@@ -1,0 +1,25 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>The HTML5 Herald</title>
+</head>
+<body>
+	<p>this is for test </p>
+	<script src="https://cdn.firebase.com/js/client/2.4.0/firebase.js"></script>
+	<script>
+		var ref = new Firebase("https://docs-examples.firebaseio.com/samplechat/users/fred");
+ref.once("value", function(snapshot) {
+  var a = snapshot.exists();
+  // a === true
+  var b = snapshot.child("name").exists();
+  // b === true
+  var c = snapshot.child("name/first").exists();
+  // c === true
+  var d = snapshot.child("name/middle").exists();
+  // d === false (because there is no "name/middle" child in the data snapshot)
+  console.log("a= " + a + " b= " + b+ " c= " + c + " d= " + d);
+  console.log(snapshot);
+});
+	</script>

@@ -1,0 +1,14 @@
+{
+  "firebase": "amber-torch-6587",
+  "public": ".",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ],
+  "rewrites":[{"source":"**",
+  "destination":"/test.html"
+  }]
+  
+  
+}

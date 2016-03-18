@@ -1,0 +1,97 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>The HTML5 Herald</title>
+</head>
+<body>
+	<p id="pp">this is for test </p>
+	<ul>
+		<li><button id="btn">button</button></li>
+		<li><button id="btn2">retrieveing</button></li>
+		<li><button id="childAdd">retrive child add</button></li>
+		<li><button id="childChange">retrieveing child change</button></li>
+		<li><button id="reset">reset</button></li>
+		<li><button id="changKey">chang key</button></li>
+	</ul>
+	<script src="https://cdn.firebase.com/js/client/2.4.0/firebase.js"></script>
+	<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+	<script>
+	// globle varibale
+	var ref = new Firebase("https://amber-torch-6587.firebaseio.com/");
+	//childen add
+	// Get a reference to our posts
+	var ref1 = new Firebase("https://docs-examples.firebaseio.com/web/saving-data/fireblog/posts");
+
+	var ref2 = new Firebase("https://amber-torch-6587.firebaseio.com/posts");
+	var randomKey;
+	var name ="abcdef";
+
+	// Retrieve new posts as they are added to our database
+	$('#childAdd').on('click', function(){
+
+	ref2.on("child_added", function(snapshot, prevChildKey) {
+		  var newPost = snapshot.val();
+		  console.log("Author: " + newPost.author);
+		  console.log("Title: " + newPost.title);
+		  console.log("Previous Post ID: " + prevChildKey);
+		  randomKey = prevChildKey;
+		});
+
+	});
+
+	var count= 0;
+	$('#btn').on('click',function(){
+		console.log("insert");
+		var newContent = ref2.push().set({
+			author:name[count],
+			title :"this is maily for test"
+		});
+		count++;
+		if(count>name.length-1)
+		{
+			count = 0;
+		}
+
+	});
+
+	$('#reset').on('click',function(){
+		console.log('reset');
+		var randomKey = ref2.push().key();
+		// rr[]=randomKey.key();
+		// randomKey = randomKey.split("");
+		// randomKey.substr(1,randomKey.length-2);
+		// randomKey=randomKey.substr(1,randomKey.length-2);		console.log(randomKey);
+		var foo = {};
+		foo[randomKey] = {author : "gracehop",title:"this is for test"};
+		// foo[randomKey = {author : "gracehop",title:"this is for test"}];
+		ref2.set(foo);
+		});
+// question how to dynamic to change the key value without touch value ????????????? still extic
+
+// solution:  copy childe 以后的node， 然后 重新建立 一个新的node. 如果没有抛出错误的话，就删除原来的。如果抛出错误的话，就不擅删除。
+/*
+	rootRef.child(oldName).once('value', function(readSnap) {
+     rootRef.child(newName).set(readSnap.val(), function(error) {
+         if( !error ) { readSnap.ref().remove(); }
+     });
+});
+
+*/
+
+
+rootRef.child(oldName).once('value', function(readSnap) {
+     rootRef.child(newName).set(readSnap.val(), function(error) {
+         if( !error ) { readSnap.ref().remove(); }
+     });
+});
+
+
+
+	$('#changKey').on("click", function(){
+			ref2.update({asdasd:{author : "gracehop",title:"this is for test"}});
+	});
+	// });
+		
+	</script>
