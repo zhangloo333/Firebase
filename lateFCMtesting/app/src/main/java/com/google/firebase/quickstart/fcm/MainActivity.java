@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 // [START subscribe_topics]
                 FirebaseMessaging.getInstance().subscribeToTopic("news");
                 FirebaseMessaging.getInstance().subscribeToTopic("dogs");
+                FirebaseMessaging.getInstance().unsubscribeFromTopic("news");
 
                 // [END subscribe_topics]
 
