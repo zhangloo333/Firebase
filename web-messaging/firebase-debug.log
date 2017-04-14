@@ -1,14 +1,14 @@
 [debug] ----------------------------------------------------------------------
 [debug] Command:      /usr/local/bin/node /usr/local/bin/firebase serve -p 8081
-[debug] CLI Version:  3.1.0
+[debug] CLI Version:  3.4.0
 [debug] Platform:     darwin
 [debug] Node Version: v4.2.6
-[debug] Time:         Fri Nov 04 2016 11:21:56 GMT-0700 (PDT)
+[debug] Time:         Fri Mar 24 2017 15:18:38 GMT-0700 (PDT)
 [debug] ----------------------------------------------------------------------
 [debug] 
 [info] Starting Firebase development server...
 [info] 
-[info] Project Directory: /Users/leizha/Downloads/quickstart-js-master/messaging
+[info] Project Directory: /Users/leizha/Desktop/Firebase-ALL/web-messaging
 [info] Public Directory: public
 [info] 
 [info] Server listening at: http://localhost:8081

@@ -8,13 +8,13 @@ importScripts('https://www.gstatic.com/firebasejs/3.5.2/firebase-messaging.js');
 // Initialize the Firebase app in the service worker by passing in the
 // messagingSenderId.
 
-  var config = {
-    apiKey: "AIzaSyBncYSzygxnpu9f0Y-OzRI1bmwyprITrP8",
-    authDomain: "webtesting-9ee92.firebaseapp.com",
-    databaseURL: "https://webtesting-9ee92.firebaseio.com",
-    storageBucket: "webtesting-9ee92.appspot.com",
-    messagingSenderId: "605704466099"
-  }; 
+  // var config = {
+  //   apiKey: "AIzaSyBncYSzygxnpu9f0Y-OzRI1bmwyprITrP8",
+  //   authDomain: "webtesting-9ee92.firebaseapp.com",
+  //   databaseURL: "https://webtesting-9ee92.firebaseio.com",
+  //   storageBucket: "webtesting-9ee92.appspot.com",
+  //   messagingSenderId: "605704466099"
+  // };
 
 firebase.initializeApp({
   'messagingSenderId': '605704466099'
@@ -22,7 +22,8 @@ firebase.initializeApp({
 
 // Retrieve an instance of Firebase Messaging so that it can handle background
 // messages.
-const messaging = firebase.();
+const messaging = firebase.messaging();
+console.log('message123 ' + messaging);
 // [END initialize_firebase_in_sw]
 
 // If you would like to customize notifications that are received in the
@@ -30,13 +31,16 @@ const messaging = firebase.();
 // implement this optional method.
 // [START background_handler]
 messaging.setBackgroundMessageHandler(function(payload) {
-  console.log('[firebase-messaging-sw.js] Received background message ', payload);
+  console.log('received message123 ', payload);
   // Customize notification here
-  const notificationTitle = 'Background Message Title';
+  const notificationTitle = 'Background Message 111';
   const notificationOptions = {
-    body: 'Background Message body.',
+    body: 'Background Message body1111.',
     icon: 'firebase-logo.png'
   };
+
+  // return self.registration.showNotification(notificationTitle,
+  //     notificationOptions);
 
   return self.registration.showNotification(notificationTitle,
       notificationOptions);

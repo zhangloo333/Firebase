@@ -135,12 +135,12 @@ limitations under the License.
   // - the user clicks on an app notification created by a sevice worker
   //   `messaging.setBackgroundMessageHandler` handler.
   messaging.onMessage(function(payload) {
-    console.log("Message received. ", payload);
+    console.log("Message received1111111. ", payload);
     // [START_EXCLUDE]
     // Update the UI to include the received message.
     appendMessage(payload);
     // alert("you have new message");
-    new Notification(payload.notification.body);
+    // new Notification(payload.notification.body);
 
     // [END_EXCLUDE]
   });

@@ -37,6 +37,7 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
         // Get updated InstanceID token.
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
         Log.d(TAG, "Refreshed token: " + refreshedToken);
+        Log.d(TAG, "Refreshed token1: " + FirebaseInstanceId.getInstance().getToken());
 
         // If you want to send messages to this application instance or
         // manage this apps subscriptions on the server side, send the
