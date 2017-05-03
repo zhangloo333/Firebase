@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "webtesting-9ee92"
+    "default": "webtesting-9ee92",
+    "staging": "webtesting-9ee92"
   }
 }
